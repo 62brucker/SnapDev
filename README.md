@@ -30,6 +30,23 @@ NEXT_PUBLIC_AGENT_URL=http://localhost:4177 pnpm --filter @snapdev/web dev
 
 Find the computer's LAN address with `ipconfig getifaddr en0` on macOS or `ipconfig` on Windows. Do not hardcode it in source.
 
+## Mac desktop app
+
+The desktop app starts the local relay and dashboard automatically—no Terminal is required after installation. For development:
+
+```bash
+pnpm --filter @snapdev/desktop dev
+```
+
+To create an Apple Silicon `.dmg` and `.zip`:
+
+```bash
+pnpm --filter @snapdev/web build
+pnpm --filter @snapdev/desktop dist:mac
+```
+
+Artifacts are written to `apps/desktop/release`. Distribution builds should be signed and notarized with a Developer ID Application certificate from an active Apple Developer Program membership.
+
 ## API
 
 - `GET /api/health`

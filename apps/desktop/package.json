@@ -1,0 +1,59 @@
+{
+  "name": "@snapdev/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SnapDev desktop relay for macOS",
+  "main": "dist/main.cjs",
+  "scripts": {
+    "build:main": "esbuild src/main.ts --bundle --platform=node --target=node22 --format=cjs --outfile=dist/main.cjs --external:electron",
+    "prepare:web": "node scripts/prepare-web.mjs",
+    "build": "pnpm --filter @snapdev/web build && pnpm build:main && pnpm prepare:web",
+    "dev": "pnpm build:main && electron .",
+    "dist:mac": "pnpm build && electron-builder --mac dmg zip --arm64",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "@snapdev/web": "workspace:*",
+    "@types/node": "^24.3.0",
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "com.snapdev.desktop",
+    "productName": "SnapDev",
+    "asar": true,
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/web",
+        "to": "web"
+      }
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "extendInfo": {
+        "NSLocalNetworkUsageDescription": "SnapDev receives screenshots directly from your phone over your local network."
+      }
+    },
+    "dmg": {
+      "title": "SnapDev ${version}"
+    }
+  }
+}

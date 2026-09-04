@@ -8,3 +8,5 @@ coverage
 *.tsbuildinfo
 .vercel
 .env.local
+apps/desktop/release
+apps/desktop/resources/web
