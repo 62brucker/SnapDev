@@ -1,0 +1,10 @@
+{
+  "name": "@snapdev/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/index.ts",
+  "scripts": { "typecheck": "tsc --noEmit", "build": "tsc --noEmit", "test": "echo 'No config tests'" },
+  "dependencies": { "zod": "^4.1.1" },
+  "devDependencies": { "typescript": "^5.9.2" }
+}
