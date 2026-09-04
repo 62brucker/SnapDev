@@ -1,4 +1,4 @@
-const EARLY_ACCESS_URL = "https://github.com/62brucker/SnapDev/issues/new?title=Early%20access%20request&body=AI%20coding%20tool%3A%20%0AMobile%20stack%3A%20%0AWhat%20would%20you%20use%20SnapDev%20for%3A%20";
+const EARLY_ACCESS_URL = "https://docs.google.com/forms/d/e/1FAIpQLSc6Nxveur3rgN8zR-FUWtITYFJeSlQOCXA8OMCt3THAFsSing/viewform?usp=publish-editor";
 
 export function LandingPage() {
   return (
