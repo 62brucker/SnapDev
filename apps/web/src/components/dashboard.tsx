@@ -58,7 +58,7 @@ export function Dashboard() {
   useEffect(() => () => capturesRef.current.forEach((capture) => URL.revokeObjectURL(capture.url)), []);
 
   const uploadUrl = `${AGENT_URL}/api/capture`;
-  const signedUploadUrl = session ? `${uploadUrl}?sessionId=${encodeURIComponent(session.sessionId)}&token=${encodeURIComponent(session.uploadToken)}` : "Creating shortcut URL…";
+  const signedUploadUrl = session ? `${uploadUrl}?token=${encodeURIComponent(session.uploadToken)}` : "Creating shortcut URL…";
   const latency = current ? Math.max(0, current.renderedAt - current.serverReceivedAt) : undefined;
   const relativeTime = useMemo(() => current ? new Intl.RelativeTimeFormat(undefined, { numeric: "auto" }).format(Math.min(0, Math.round((current.timestamp - Date.now()) / 1000)), "second") : "", [current]);
 

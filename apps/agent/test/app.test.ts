@@ -15,7 +15,7 @@ describe("agent API", () => {
     const session = created.json();
     expect(session.uploadToken).toBe("1234");
     const capture = await agent.app.inject({
-      method: "POST", url: `/api/capture?sessionId=${session.sessionId}&token=${session.uploadToken}`,
+      method: "POST", url: `/api/capture?token=${session.uploadToken}`,
       headers: { "content-type": "image/png" },
       payload: Buffer.from([137, 80, 78, 71])
     });
@@ -56,7 +56,7 @@ describe("agent API", () => {
     });
 
     const pixels = Buffer.from([137, 80, 78, 71, 1, 2, 3, 4]);
-    const upload = await fetch(`http://127.0.0.1:${address.port}/api/capture?sessionId=${encodeURIComponent(session.sessionId)}&token=${encodeURIComponent(session.uploadToken)}`, {
+    const upload = await fetch(`http://127.0.0.1:${address.port}/api/capture?token=${encodeURIComponent(session.uploadToken)}`, {
       method: "POST",
       headers: { "content-type": "image/png", "x-snapdev-device": "Test iPhone" },
       body: pixels
